@@ -4,7 +4,12 @@ import emeka.TodoService;
 import org.hamcrest.core.Is;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,30 +17,33 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.*;
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.*;
-
+@RunWith(MockitoJUnitRunner.class)
 public class TodoBusinessImplBDDMockTest {
 
+    @Mock
     private  TodoService todoServiceMock;
+
+    @InjectMocks
     private TodoBusinessImpl todoBusiness;
+
+    @Captor
+    ArgumentCaptor<String> stringArgumentCaptor;
+
     private List<String> todos;
     private List<String> todos1;
 
 
     @Before
     public void setup(){
-         todoServiceMock = mock(TodoService.class);
-         todoBusiness = new TodoBusinessImpl(todoServiceMock);
+//         todoServiceMock = mock(TodoService.class);
+//         todoBusiness = new TodoBusinessImpl(todoServiceMock);
          todos = Arrays.asList("Learn Spring MVC", "Learn Testing with Mockito", "Learn Spring boot security","Learn Introduction to Java hibernate and JPA", "Learn GitHub");
         todos1 = Arrays.asList("Learn Spring MVC", "Learn Testing with Mockito", "Learn Spring boot security", "Learn Spring GitHub");
 
         when(todoServiceMock.retrieveTodos("Dummy")).thenReturn(todos);
-        when(todoServiceMock.retrieveTodos("Dummy1")).thenReturn(List.of());
-        when(todoServiceMock.retrieveTodos(null)).thenThrow(NullPointerException.class);
-        when(todoServiceMock.retrieveTodos2("Dummy2")).thenCallRealMethod();
 
 
     }
@@ -104,7 +112,7 @@ public class TodoBusinessImplBDDMockTest {
     @Test
     public void testDeleteTodosNotRelatedToSpring_BDD_ArgumentCapture(){
         //Declare Argument Captor
-        ArgumentCaptor<String> stringArgumentCaptor = ArgumentCaptor.forClass(String.class);
+//        ArgumentCaptor<String> stringArgumentCaptor = ArgumentCaptor.forClass(String.class);
         // Given
         given(todoServiceMock.retrieveTodos("Dummy")).willReturn(todos1);
         //when
@@ -120,7 +128,7 @@ public class TodoBusinessImplBDDMockTest {
     public void testDeleteTodosNotRelatedToSpring_BDD_ManyArgumentCapture(){
         List<String> expected = Arrays.asList("Learn Testing with Mockito","Learn Introduction to Java hibernate and JPA", "Learn GitHub");
         //Declare Argument Captor
-        ArgumentCaptor<String> stringArgumentCaptor = ArgumentCaptor.forClass(String.class);
+//        ArgumentCaptor<String> stringArgumentCaptor = ArgumentCaptor.forClass(String.class);
         // Given
         given(todoServiceMock.retrieveTodos("Dummy")).willReturn(todos);
         //when
