@@ -8,4 +8,6 @@ public interface TodoService {
     default List<String> retrieveTodos2(String user) {
          return List.of("Linux","Learn Spring", "Learn JPA");
     }
+
+    void deleteTodo(String todo);
 }

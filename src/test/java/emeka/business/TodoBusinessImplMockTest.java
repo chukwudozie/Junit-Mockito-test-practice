@@ -1,17 +1,14 @@
 package emeka.business;
 
 import emeka.TodoService;
-import emeka.TodoServiceStub;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class TodoBusinessImplMockTest {
 
@@ -63,6 +60,27 @@ public class TodoBusinessImplMockTest {
         List<String> expectedTodos = List.of("Learn Spring");
         assertEquals("the elements of the two must be the same",expectedTodos,actualTodos);
         assertEquals(expectedTodos.size(),actualTodos.size());
+    }
+
+    @Test
+    public void testDeleteTodosNotRelatedToSpring_UsingVerifyMethod(){
+        // Given
+
+        when(todoServiceMock.retrieveTodos("Dummy")).thenReturn(todos);
+
+        //when
+        todoBusiness.deleteTodosNotRelatedToSpring("Dummy");
+
+        //then
+        verify(todoServiceMock).deleteTodo("Learn Testing with Mockito");
+        verify(todoServiceMock).deleteTodo("Learn Introduction to Java hibernate and JPA");
+        verify(todoServiceMock).deleteTodo("Learn GitHub");
+        //this checks that the deleteTodo method is not called when a specific todos contains Spring
+        verify(todoServiceMock,never()).deleteTodo("Learn Spring MVC");
+
+        // check the number of times a particular method is called
+        verify(todoServiceMock,times(1)).deleteTodo("Learn Testing with Mockito");
+        verify(todoServiceMock,atMostOnce()).deleteTodo("Learn Testing with Mockito");
     }
 
 }

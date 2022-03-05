@@ -1,7 +1,7 @@
 package emeka.business;
 
 import emeka.TodoService;
-import emeka.TodoServiceStub;
+import emeka.dataAPI.TodoServiceStub;
 import org.junit.Before;
 import org.junit.Test;
 

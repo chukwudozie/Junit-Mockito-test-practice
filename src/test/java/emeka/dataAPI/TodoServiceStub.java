@@ -1,4 +1,6 @@
-package emeka;
+package emeka.dataAPI;
+
+import emeka.TodoService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,5 +14,10 @@ public class TodoServiceStub implements TodoService {
     public List<String> retrieveTodos(String user) {
         return Arrays.asList("Learn Spring MVC", "Learn Testing with Mockito",
           "Learn Spring boot security","Learn Introduction to Java hibernate and JPA", "Learn GitHub");
+    }
+
+    @Override
+    public void deleteTodo(String todo) {
+
     }
 }
