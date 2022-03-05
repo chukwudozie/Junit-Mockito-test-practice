@@ -22,5 +22,12 @@ public class HamcrestMatcherTest {
         assertThat(scores,everyItem(greaterThan(24)));
         assertThat(null, isEmptyOrNullString());
 
+        //Asserts for arrays
+        Integer [] array = {5,10,15};
+        assertThat(array, arrayWithSize(3));
+        assertThat(array, arrayContaining(5,10,15));
+        assertThat(array,notNullValue() );
+        assertThat(array,hasItemInArray(5));
+
     }
 }
