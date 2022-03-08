@@ -1,7 +1,6 @@
 package emeka.business;
 
-import emeka.TodoService;
-import org.hamcrest.core.Is;
+import emeka.dataAPI.TodoService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

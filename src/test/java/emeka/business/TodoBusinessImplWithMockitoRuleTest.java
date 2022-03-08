@@ -1,14 +1,15 @@
 package emeka.business;
 
-import emeka.TodoService;
+import emeka.dataAPI.TodoService;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,12 +17,16 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
+//@RunWith(MockitoJUnitRunner.class)
 public class TodoBusinessImplWithMockitoRuleTest {
 
     @Mock
     //this is same as todoServiceMock = mock(TodoService.class);
     private TodoService todoServiceMock;
+
+    @Rule
+    // You can have many rules but only one runner
+   public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @InjectMocks
     //this injects the mocks needed by the TodoBusinessImpl automatically

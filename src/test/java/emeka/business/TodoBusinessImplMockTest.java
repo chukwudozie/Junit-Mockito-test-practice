@@ -1,6 +1,6 @@
 package emeka.business;
 
-import emeka.TodoService;
+import emeka.dataAPI.TodoService;
 import org.junit.Before;
 import org.junit.Test;
 
